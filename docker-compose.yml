@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:15
-    container_name: meu_postgres
+    container_name: minimarket_db
     environment:
       POSTGRES_USER: usuario
       POSTGRES_PASSWORD: senha
@@ -20,12 +18,12 @@ services:
 
   app:
     build: .
-    container_name: minha_app
+    container_name: minimarket_app
     volumes:
       - .:/app
     working_dir: /app
     ports:
-      - "5000:5000"
+      - "5001:5001"
     depends_on:
       db:
         condition: service_healthy

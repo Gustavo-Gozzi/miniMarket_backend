@@ -5,7 +5,7 @@ def register_routes(app):
     @app.route('/api', methods=['GET'])
     def health():
         return make_response(jsonify({
-            "mensagem": "API - OK; Docker - Up",
+            "mensagem": "API - OK; Docker - Up - Minimarket",
         }), 200)
 
     @app.route('/user', methods=['POST'])
