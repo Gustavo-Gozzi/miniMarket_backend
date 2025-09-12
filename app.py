@@ -1,9 +1,11 @@
 from flask import Flask
 from src.Config.db import init_db
 from src.routes import register_routes
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
 
     # inicializa DB
     init_db(app)

@@ -33,10 +33,10 @@ class UserController:
             "usuarios": user.to_dict()
         }), 200)
     
-    def get_users():
+    def get_users(user_id):
         "Busca todos os usuarios no DB"
-        users = UserModel.query.all()
-        return [{
+        user = UserModel.query.get(user_id)
+        return {
             "Id": user.id,
             "Nome": user.name,
             "CNPJ": user.cnpj, 
@@ -44,8 +44,6 @@ class UserController:
             "Celular": user.phone,
             "Status": user.status
         }
-        for user in users
-        ]
     
     def update_user(user_id):
         data = request.get_json()
