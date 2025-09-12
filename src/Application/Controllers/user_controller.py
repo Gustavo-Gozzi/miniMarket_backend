@@ -18,20 +18,20 @@ class UserController:
             return make_response(jsonify({"erro": f"Estão faltando os seguintes campos: {info_faltantes}"}), 400)
         
         if not '@' in data["email"] or not '.com' in data["email"]:
-            return make_response(jsonify({"erro": "E-mail inválido"}))
+            return make_response(jsonify({"erro": "E-mail inválido"})), 400
         
         try:
             if int(data["celular"]) < 13:
-                return make_response(jsonify({"erro": "Numero de celular invalido. Formato: 5511912345678"}))
+                return make_response(jsonify({"erro": "Numero de celular invalido. Formato: 5511912345678"})), 400
             
         except:
-            return make_response(jsonify({"erro": "Celular invalido. Por favor, insira somente caracteres numericos"}))
+            return make_response(jsonify({"erro": "Celular invalido. Por favor, insira somente caracteres numericos"})), 400
 
         user = UserService.create_user(data["name"], data["email"], data["password"], data["celular"], data["cnpj"])
         return make_response(jsonify({
             "mensagem": "User salvo com sucesso",
             "usuarios": user.to_dict()
-        }), 200)
+        }), 200)    
     
     def get_users(user_id):
         "Busca todos os usuarios no DB"
