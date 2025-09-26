@@ -9,7 +9,7 @@ class UserModel(db.Model):
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(14), nullable=False)
     password = db.Column(db.String(200), nullable=False)
-    status = db.Column(db.String(10), nullable=False, default='Inativo')
+    status = db.Column(db.String(10), nullable=False, default='Ativo')
     code = db.Column(db.Integer, nullable = True)
 
     def to_dict(self):

@@ -47,7 +47,7 @@ class UserService:
                 code=new_user.code
             )
 
-            send_whatsapp_code(user.code, user.phone)
+            #send_whatsapp_code(user.code, user.phone) 
             
             db.session.add(user)
             db.session.commit()
