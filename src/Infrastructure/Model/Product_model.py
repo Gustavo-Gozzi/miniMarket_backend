@@ -9,8 +9,8 @@ class ProductModel(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(10), nullable=False, default='Ativo')
     
-    id_seller = db.Column(db.Integer, nullable=False)
-    item = db.relationship("usuarios", backref="produtos")  
+    id_seller = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    seller = db.relationship("UserModel", backref="produtos") 
 
     def to_dict(self):
         return {

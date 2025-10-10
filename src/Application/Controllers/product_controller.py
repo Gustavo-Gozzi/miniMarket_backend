@@ -5,7 +5,7 @@ import re
 
 class ProductController:
     @staticmethod
-    def register_user():
+    def register_product():
         try:
             data = request.get_json()
             
@@ -21,7 +21,7 @@ class ProductController:
                     400
                 )
             
-            result, status_code = ProductService.create_user(**data)
+            result, status_code = ProductService.create_product(**data)
             
             if status_code != 201:
                 return make_response(jsonify(result), status_code)
@@ -32,35 +32,35 @@ class ProductController:
             }), 201)
             
         except Exception as e:
-            return make_response(jsonify({"erro": "Erro interno do servidor"}), 500)
+            return make_response(jsonify({"erro": f"Erro interno do servidor: {e}"}), 500)
     
     @staticmethod
-    def get_user(user_id):
+    def get_product(product_id):
         """Busca usuário por ID"""
         try:
-            result, status_code = UserService.get_user_by_id(user_id)
+            result, status_code = ProductService.get_product_by_id(product_id)
             return make_response(jsonify(result), status_code)
         except Exception as e:
             return make_response(jsonify({"erro": "Erro interno do servidor"}), 500)
     
     @staticmethod
-    def update_user(user_id):
+    def update_product(product_id):
         try:
             data = request.get_json()
             
             if not data:
                 return make_response(jsonify({"erro": "Dados JSON são obrigatórios"}), 400)
             
-            result, status_code = UserService.update_user(user_id, **data)
+            result, status_code = ProductService.update_product(product_id, **data)
             return make_response(jsonify(result), status_code)
             
         except Exception as e:
             return make_response(jsonify({"erro": "Erro interno do servidor"}), 500)
     
     @staticmethod
-    def delete_user(user_id):
+    def delete_product(product_id):
         try:
-            result, status_code = UserService.delete_user(user_id)
+            result, status_code = ProductService.delete_product(product_id)
             return make_response(jsonify(result), status_code)
         except Exception as e:
             return make_response(jsonify({"erro": "Erro interno do servidor"}), 500)
