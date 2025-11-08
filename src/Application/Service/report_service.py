@@ -19,3 +19,5 @@ class ReportService:
                 ReportModel.product_id == idProduto,
                 ReportModel.sales_date == date(2025, 11, 8)
             ).all()
+
+        except: pass
